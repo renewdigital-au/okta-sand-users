@@ -1,0 +1,428 @@
+{
+	"info": {
+		"_postman_id": "231fbeca-ef87-41bc-9a1c-6949c37f2d8b",
+		"name": "okta-sand-users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Env Var Based SLS Lambdas",
+			"item": [
+				{
+					"name": "HELLO - /dev/ - AWS Lambdas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"type": "text",
+								"value": "{{xApiKey}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/hello",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE USERS  - POSTMAN ENV - SLS Lambda",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{xApiKey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"profile\": {\n    \"firstName\": \"{{testUserFirstName}}\",\n    \"lastName\": \"{{testUserLastName}}\",\n    \"email\": \"{{testUserEmail}}\",\n    \"login\":\"{{testUserEmail}}\",\n    \"mobilePhone\": \"{{testUserMobile}}\"\n  },\n  \"credentials\": {\n    \"password\" : { \"value\": \"{{testUserPassword}}\" }\n }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "CREATE USERS - based on postmant environment."
+					},
+					"response": []
+				},
+				{
+					"name": "DE-ACTIVATE USER - SLS Lambda",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"type": "text",
+								"value": "{{xApiKey}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/{{testUserId}}/lifecycle/deactivate",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"{{testUserId}}",
+								"lifecycle",
+								"deactivate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ACTIVATE USER - SLS Lambda",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"type": "text",
+								"value": "{{xApiKey}}"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/{{testUserId}}/lifecycle/activate?sendEmail={{sendEmail}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"{{testUserId}}",
+								"lifecycle",
+								"activate"
+							],
+							"query": [
+								{
+									"key": "sendEmail",
+									"value": "{{sendEmail}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET USER- POSTMAN ENV - SLS Lambda",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"type": "text",
+								"value": "{{xApiKey}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/users/{{testUserId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"{{testUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST ALL USERS - POSTMAN ENV - SLS Lambda",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"type": "text",
+								"value": "{{xApiKey}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD USER TO GROUP- POSTMAN ENV - SLS Lambda",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"type": "text",
+								"value": "{{xApiKey}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/groups/{{testGroupId}}/users/{{testUserId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"groups",
+								"{{testGroupId}}",
+								"users",
+								"{{testUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE USER - POSTMAN ENV - SLS Lambda",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"type": "text",
+								"value": "{{xApiKey}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/{{testUserId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"{{testUserId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Use environments to change x-api-key and urls",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "30ede346-53fd-4e3a-938a-463cfcd51cb5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7170cedd-df56-4a3f-b5e7-d36a34ec37f5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Direct OKTA API requests",
+			"item": [
+				{
+					"name": "create-okta-user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"type": "text"
+							},
+							{
+								"key": "Content-Header",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "SSWS 00M4UeMWhAKRjAc9S9kUWaeQkb9Sb6pp6HZS6xohhM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"profile\": {\n    \"firstName\": \"Nick\",\n    \"lastName\": \"Cave\",\n    \"email\": \"nick.cave@example.com\",\n    \"login\": \"nick.cave@example.com\",\n    \"mobilePhone\": \"555-999-1388\"\n  },\n  \"credentials\": {\n    \"password\" : { \"value\": \"Pepsicola7\" }\n }\n}"
+						},
+						"url": {
+							"raw": "https://example.okta.com/api/v1/users?activate=true",
+							"protocol": "https",
+							"host": [
+								"example",
+								"okta",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "activate",
+									"value": "true"
+								}
+							]
+						},
+						"description": "Usually these calls are made on the  on the server(lambda). Just perfecting them here."
+					},
+					"response": []
+				},
+				{
+					"name": "create-okta-user Copy",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"type": "text"
+							},
+							{
+								"key": "Content-Header",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "SSWS 00M4UeMWhAKRjAc9S9kUWaeQkb9Sb6pp6HZS6xohhM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"profile\": {\n    \"firstName\": \"Mike\",\n    \"lastName\": \"Smith\",\n    \"email\": \"mike.smith@example.com\",\n    \"login\": \"mike.smith@example.com\",\n    \"mobilePhone\": \"555-415-1337\"\n  },\n  \"credentials\": {\n    \"password\" : { \"value\": \"Pepsicola7\" }\n }\n}"
+						},
+						"url": {
+							"raw": "https://example.okta.com/api/v1/groups/00g2rgi9klNpS1uZm5d6/users/00u3dsp0zofE3aKnm5d6/",
+							"protocol": "https",
+							"host": [
+								"example",
+								"okta",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"groups",
+								"00g2rgi9klNpS1uZm5d6",
+								"users",
+								"00u3dsp0zofE3aKnm5d6",
+								""
+							]
+						},
+						"description": "Usually these calls are made on the  on the server(lambda). Just perfecting them here."
+					},
+					"response": []
+				}
+			],
+			"description": "No offline lambdas running.\nNo AWS Gateway lambdas.\nDirect OKTA API requests.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "101f3d4c-e4bf-4e89-9093-6c457b4c3d20",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "285f7cdb-e2a8-4e11-917a-50ab3bd3cd1b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

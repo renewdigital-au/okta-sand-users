@@ -1,0 +1,28 @@
+{
+  "name": "okta-sand-users",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "OKTA_BASE_URL=example.okta.com jest",
+    "sls:offline": "sls offline start",
+    "sls:deploy": "sls deploy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "nock": "^13.0.5",
+    "serverless-offline": "^6.8.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/?(*.)+(test|spec).[jt]s?(x)"
+    ]
+  }
+}
