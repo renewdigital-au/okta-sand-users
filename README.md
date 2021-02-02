@@ -75,4 +75,8 @@ Currently this is just the API.
 If you delete a use with the offline API the lambda will run locally BUT still delete the actual Okta User in Cloud.
 
 
+## Testing
+`yarn test` will kick local jest test for the lambda handlers locally.
+Within these tests event constants are injected into each handler when invoked.
+These events have mock data and are approximations of what AWS would inject when a lambda is triggerred.
 
